@@ -6,11 +6,10 @@ add_page_title()
 
 show_pages(
     [   
-        Page("app.py", "환율 분석 및 예측", "✈️"),
-
-        #Section("section", "🧙‍♂️"),
-        Page("pages/map.py", "세계 환율 변동", "🌏", in_section=True),
+        #Section("Menu"),
+        Page("app.py", "환율 분석 및 예측 서비스", "✈️"),
         Page("pages/crawling.py", "환율 추이 예측", "🤖", in_section=True),
+        Page("pages/map.py", "세계 환율 변동", "🌏", in_section=True),
         Page("pages/exchange_rate.py", "환율 계산 및 시각화", "📈", in_section=True),
     ]
 )
@@ -43,6 +42,7 @@ st.markdown("""
             
 ### 📄 페이지별 간단 설명?
 * **app.py** : 메인 페이지
+            
 * **map.py** : 최근 7일간 세계 환율 변동 추이를 지도 위에 표시. Plotly의 scatter_geo를 사용
 * **crawling.py** : 챗지피티 예측 결과 ,, 어쩌고
 * **exchange_rate.py** : 환율 계산 및 한달치 환율 변동 시각화
@@ -53,6 +53,8 @@ st.markdown("""
 * Python 3
 * 시각화나 데이터 분석에 사용한 툴 등
 
-            
+---
+
+### 🤯 회고
 
 """)

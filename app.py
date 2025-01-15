@@ -42,10 +42,10 @@ st.markdown("""
 ---
             
 ### 📄 페이지별 간단 설명?
-* app.py : 메인 페이지
-* map.py : 최근 7일간 세계 환율 변동 추이를 지도 위에 표시. Plotly의 scatter_geo를 사용
-* crawling.py : 챗지피티 예측 결과 ,, 어쩌고
-* exchange_rate.py : 환율 계산 및 한달치 환율 변동 시각화
+* **app.py** : 메인 페이지
+* **map.py** : 최근 7일간 세계 환율 변동 추이를 지도 위에 표시. Plotly의 scatter_geo를 사용
+* **crawling.py** : 챗지피티 예측 결과 ,, 어쩌고
+* **exchange_rate.py** : 환율 계산 및 한달치 환율 변동 시각화
 
 ---
             

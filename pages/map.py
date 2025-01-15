@@ -5,12 +5,14 @@ import requests
 import urllib3
 from datetime import datetime, timedelta
 import json
+import app
+
 
 # SSL 경고 무시 설정
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # API 키 설정
-AUTH_KEY = ""  # 여기에 실제 API 키를 입력하세요
+AUTH_KEY = "zJiQc2Wv8d3mFZJ1OTkLjcphVoFDnSwE"
 
 def get_exchange_rates(search_date):
     """한국수출입은행 환율 API에서 데이터를 가져오는 함수"""
@@ -197,10 +199,10 @@ def main():
                     st.plotly_chart(fig, use_container_width=True)
                     
                     # 상세 정보 표시
-                    st.subheader('국가별 환율 변동 추이')
-                    for country, trend in trends.items():
-                        color = '🔴' if trend == 'increase' else '🔵'
-                        st.write(f'{color} {country}: {"상승" if trend == "increase" else "하락"} 추세')
+                    # st.subheader('국가별 환율 변동 추이')
+                    # for country, trend in trends.items():
+                    #     color = '🔴' if trend == 'increase' else '🔵'
+                    #     st.write(f'{color} {country}: {"상승" if trend == "increase" else "하락"} 추세')
 
 if __name__ == '__main__':
     main()

@@ -37,7 +37,7 @@ def get_exchange_rates(search_date):
         try:
             data = response.json()
             if not data:  # 빈 리스트 확인
-                st.warning(f"{search_date.strftime('%Y-%m-%d')} 데이터가 없습니다.")
+                #st.warning(f"{search_date.strftime('%Y-%m-%d')} 데이터가 없습니다.")
                 return None
             return data
         except json.JSONDecodeError as e:

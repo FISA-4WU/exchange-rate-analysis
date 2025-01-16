@@ -11,19 +11,19 @@ import plotly.graph_objects as go
 st.title("🤖 환전 날짜 추천")
 st.markdown('\n\n')
 
-# country.json 파일 읽기
-with open('pages/country.json', 'r', encoding='utf-8') as f:
-    country_dict = json.load(f)
+# contry.json 파일 읽기
+with open('pages/contry.json', 'r', encoding='utf-8') as f:
+    contry_dict = json.load(f)
 
 # 모든 통화 코드 리스트
-currencies = list(country_dict.keys())
+currencies = list(contry_dict.keys())
 
 # 사용자 입력 받기 (통화 코드와 날짜)
 def get_user_input():
-    selected_country = st.selectbox("어디로 여행 가시나요?", list(country_dict.values()))
+    selected_contry = st.selectbox("어디로 여행 가시나요?", list(contry_dict.values()))
     selected_date = st.date_input("언제 출발하시나요?", datetime.date.today() + datetime.timedelta(days=10))  # 기본 10일 후
-    selected_country_code = [key for key, value in country_dict.items() if value == selected_country][0]
-    return selected_country_code, selected_date
+    selected_contry_code = [key for key, value in contry_dict.items() if value == selected_contry][0]
+    return selected_contry_code, selected_date
 
 # WooriBank API로 환율 데이터 크롤링
 def crawl_exchange_rate_data(start_date, end_date, currency_code):
@@ -95,7 +95,7 @@ def train_model(df):
     return model
 
 # 예측 함수 (여러 날짜에 대해 예측)
-def predict_exchange_rate(model, start_date, end_date, selected_country_code):
+def predict_exchange_rate(model, start_date, end_date, selected_contry_code):
     # 예측할 날짜 범위 생성
     forecast_dates = pd.date_range(start=start_date, end=end_date, freq='D')
     forecast_data = pd.DataFrame({
@@ -117,7 +117,7 @@ def predict_exchange_rate(model, start_date, end_date, selected_country_code):
     })
 
     # 선택된 나라에 대한 예측 결과 반환
-    forecast_df['currency'] = selected_country_code
+    forecast_df['currency'] = selected_contry_code
 
     # 인덱스 리셋
     forecast_df.reset_index(drop=True, inplace=True)
@@ -127,7 +127,7 @@ def predict_exchange_rate(model, start_date, end_date, selected_country_code):
 # 메인 함수
 def main():
     # 사용자 입력 받기
-    selected_country_code, selected_date = get_user_input()
+    selected_contry_code, selected_date = get_user_input()
 
     # 크롤링 시작 날짜와 끝 날짜 설정
     today_date = datetime.date.today()
@@ -135,7 +135,7 @@ def main():
     search_start_date = today_date - datetime.timedelta(days=365 * 5)  # 5년치 데이터
 
     # 전체 데이터 크롤링
-    df = pd.DataFrame(crawl_exchange_rate_data(search_start_date, search_finish_date, selected_country_code))
+    df = pd.DataFrame(crawl_exchange_rate_data(search_start_date, search_finish_date, selected_contry_code))
 
     if df.empty:
         st.write("해당 기간의 환율 데이터가 없습니다.")
@@ -145,14 +145,14 @@ def main():
     model = train_model(df)
 
     # 예측된 환율 추출
-    forecast_df = predict_exchange_rate(model, today_date, selected_date, selected_country_code)
+    forecast_df = predict_exchange_rate(model, today_date, selected_date, selected_contry_code)
 
     # 예측된 환율 중에서 최저 2개를 오름차순으로 선택
     lowest_2 = forecast_df.nsmallest(5, '예측 환율')  # 오름차순으로 선택
 
     st.markdown("\n\n\n\n\n\n\n\n\n\n")
     # 예측 결과 표시
-    st.write(f"{country_dict[selected_country_code]} ({selected_country_code})의 환율이 낮을 것 같은 날을 선정해봤어요  '_'\n 오류가 생기면 깃허브로 연락주세요. 빠른 시일 내에 고치겠습니다.")
+    st.write(f"{contry_dict[selected_contry_code]} ({selected_contry_code})의 환율이 낮을 것 같은 날을 선정해봤어요  '_'\n 오류가 생기면 깃허브로 연락주세요. 빠른 시일 내에 고치겠습니다.")
     #st.write(lowest_2[['날짜', '예측 환율']])
 
     # Plotly로 표 생성

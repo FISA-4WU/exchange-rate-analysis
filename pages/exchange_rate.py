@@ -44,6 +44,7 @@ def fetch_exchange_rate_data(date):
 def fetch_monthly_data():
     today = datetime.now()
     dates = [(today - timedelta(days=i)).strftime('%Y%m%d') for i in range(7)] # 30일 변환 필수(마지막!!!)  
+
     all_data = []
     for date in dates:
         daily_data = fetch_exchange_rate_data(date)
@@ -116,8 +117,6 @@ data = fetch_monthly_data()
 
 if not data.empty:
     plt.style.use('fivethirtyeight')  # 그래프 스타일 변경
-
-
     # 선택된 국가 데이터
     selected_data = data[data["나라 이름"] == selected_country]
 
@@ -165,12 +164,12 @@ if not data.empty:
                        xytext=(-10,0), 
                        ha='right', fontsize=18, fontweight='bold', color='red')
 
+
         ax[0].annotate(f'{min_value}', 
                        (pd.to_datetime(min_date), min_value),
                        textcoords="offset points", 
                        xytext=(15,0), 
                        ha='left', fontsize=18, fontweight='bold', color='blue')
-
         ax[0].annotate(f'{avg_value:.2f}', 
                        (pd.to_datetime(min_date), avg_value),
                        textcoords="offset points", 

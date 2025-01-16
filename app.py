@@ -1,7 +1,6 @@
 from st_pages import Page, Section, show_pages, add_page_title, hide_pages
 import streamlit as st
 
-
 add_page_title()
 
 show_pages(
@@ -41,19 +40,29 @@ st.markdown("""
 
 ---
             
-### 📄 페이지별 간단 설명?
-* **app.py** : 메인 페이지
+### 📄 페이지별 설명
+##### **[ app.py ]**
+    • 메인 페이지   
             
-* **map.py** : 최근 7일간 세계 환율 변동 추이를 지도 위에 표시. Plotly의 scatter_geo를 사용
+##### **[ crawling.py ]**
+    • 환율 추이 예측 페이지        
+    • 최근 5년치 우리은행 환율 데이터 -> Scikit-learn
+    • 사용자 설정 기간 중 환율이 가장 낮을 것으로 예측되는 날 추천
+                
+##### **[ map.py ]**
+    • 최근 7일간 세계 환율 변동 추이 지도
+    • Plotly의 scatter_geo 사용
+    • 변동성을 scatter의 size에 반영
             
-* **crawling.py** : 챗지피티 예측 결과 ,, 어쩌고
-            
-* **exchange_rate.py** : 환율 계산 및 한달치 환율 변동 시각화
+##### **[ exchange_rate.py ]**
+    • 환율 계산기
+    • 환율 변동 시각화
 
 ---
             
 ### ⚒️ Tools
 * Python 3
+* Streamlit
 * 시각화나 데이터 분석에 사용한 툴 등
 
 ---

@@ -6,13 +6,16 @@ import urllib3
 from datetime import datetime, timedelta
 import json
 import app
-
+from dotenv import load_dotenv
+import os
 
 # SSL 경고 무시 설정
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-# API 키 설정
-AUTH_KEY = "zJiQc2Wv8d3mFZJ1OTkLjcphVoFDnSwE"
+# load .env
+load_dotenv()
+
+AUTH_KEY = os.environ.get('API_KEY')
 
 def get_exchange_rates(search_date):
     """한국수출입은행 환율 API에서 데이터를 가져오는 함수"""
@@ -142,9 +145,20 @@ country_to_iso = {
     '한국': 'KOR'
 }
 
+def calculate_volatility(df):
+    """국가별 환율 변동성 계산"""
+    volatility = {}
+    for country in df['cur_nm'].unique():
+        country_data = df[df['cur_nm'] == country].sort_values('date')
+        if len(country_data) >= 2:
+            try:
+                rates = country_data['deal_bas_r'].str.replace(',', '').astype(float)
+                volatility[country] = abs(rates.iloc[-1] - rates.iloc[0])  # 변동성 계산
+            except Exception as e:
+                st.warning(f"{country} 데이터 처리 중 오류 발생: {str(e)}")
+    return volatility
 
-
-def create_scatter_geo_map(trends):
+def create_scatter_geo_map(trends, volatility):
     """국가별 환율 추세를 지도에 표시"""
     if not trends:
         st.error("시각화할 데이터가 없습니다.")
@@ -158,7 +172,8 @@ def create_scatter_geo_map(trends):
             map_data.append({
                 'country': country,
                 'iso_alpha': country_to_iso[country],
-                'trend': trend
+                'trend': trend,
+                'volatility': volatility.get(currency, 20)  # 변동성 값, 기본값 20
             })
     
     # 데이터프레임 생성
@@ -168,14 +183,16 @@ def create_scatter_geo_map(trends):
         st.error("유효한 국가 데이터가 없습니다.")
         return None
     
+    
     # Plotly scatter_geo 생성
     fig = px.scatter_geo(
         df_map,
         locations='iso_alpha',
         color='trend',
         hover_name='country',
-        opacity=0.7,
-        color_discrete_map={'increase': 'red', 'decrease': 'blue'}
+        opacity=0.5,
+        color_discrete_map={'increase': 'red', 'decrease': 'blue'},
+        size="volatility"
     )
     
     return fig
@@ -193,7 +210,8 @@ def main():
             
             if trends:
                 # 지도 생성
-                fig = create_scatter_geo_map(trends)
+                volatility = calculate_volatility(df)
+                fig = create_scatter_geo_map(trends, volatility)
                 if fig:
                     # 지도 표시
                     st.plotly_chart(fig, use_container_width=True)

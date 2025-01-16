@@ -8,6 +8,12 @@ import json
 import app
 from dotenv import load_dotenv
 import os
+from st_pages import Page, Section, show_pages, add_page_title, hide_pages
+
+
+add_page_title()
+
+hide_pages(["Thank you"])
 
 # SSL 경고 무시 설정
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -198,7 +204,7 @@ def create_scatter_geo_map(trends, volatility):
     return fig
 
 def main():
-    st.title('🌏 세계 환율 변동 추이 지도')
+    #st.title('🌏 세계 환율 변동 추이 지도')
     
     with st.spinner('데이터를 불러오는 중...'):
         # 환율 데이터 수집 및 처리

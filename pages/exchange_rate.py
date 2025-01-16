@@ -68,7 +68,7 @@ def calculate_daily_change_rate(data):
     return data.dropna()  # 첫 번째 행은 변동률 계산 불가로 제거
 
 # Streamlit UI
-st.title("📈환율 계산기 및 변동성 분석")
+st.title("📈 환율 계산기 및 변동성 분석")
 st.markdown("수출입은행 API를 사용하여 환율 계산 및 최근 일주일치 환율 변동을 시각화합니다.")
 
 # 환율 계산기

@@ -5,7 +5,6 @@ import requests
 import urllib3
 from datetime import datetime, timedelta
 import json
-import app
 from dotenv import load_dotenv
 import os
 from st_pages import Page, Section, show_pages, add_page_title, hide_pages

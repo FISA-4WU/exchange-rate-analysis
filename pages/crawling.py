@@ -19,7 +19,8 @@ currencies = list(contry_dict.keys())
 # 사용자 입력 받기 (통화 코드와 날짜)
 def get_user_input():
     selected_contry = st.selectbox("나라를 선택하세요:", list(contry_dict.values()))
-    selected_date = st.date_input("여행 날짜를 선택하세요:", datetime.date.today() + datetime.timedelta(days=10))  # 기본 10일 후
+    # selected_date = st.date_input("여행 날짜를 선택하세요:", datetime.date.today() + datetime.timedelta(days=10))  # 기본 10일 후
+    selected_date = st.date_input("여행 날짜를 선택하세요:", datetime.date.today())
     selected_contry_code = [key for key, value in contry_dict.items() if value == selected_contry][0]
     return selected_contry_code, selected_date
 

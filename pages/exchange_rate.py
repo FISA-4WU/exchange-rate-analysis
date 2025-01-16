@@ -11,8 +11,8 @@ import os
 # load .env
 load_dotenv()
 
-API_KEY = st.secrets["API_KEY"]
-#API_KEY = os.environ.get('API_KEY')
+API_KEY = st.secrets['API_KEY']
+# API_KEY = os.environ.get('API_KEY')
 
 # 한글 폰트 설정
 rc('font', family='Arial')  # 윈도우의 맑은 고딕 폰트를 사용
@@ -45,7 +45,7 @@ def fetch_exchange_rate_data(date):
 # 함수: 일주일치 데이터 가져오기 
 def fetch_monthly_data():
     today = datetime.now()
-    dates = [(today - timedelta(days=i)).strftime('%Y%m%d') for i in range(30)] # 30일 변환 필수(마지막!!!)  
+    dates = [(today - timedelta(days=i)).strftime('%Y%m%d') for i in range(3)] # 30일 변환 필수(마지막!!!)  
 
     all_data = []
     for date in dates:
@@ -167,16 +167,17 @@ if not data.empty:
             color='orange',
             marker='o', markersize=8  # 마커 크기 조정
         )
-        ax[0].set_xlabel('날짜', fontsize=20)
-        ax[0].set_ylabel('매매 기준율 (KRW)', fontsize=20)
-        ax[0].set_title(f"{selected_country} 환율 변동 (최근 1개월)", fontsize=25, fontweight='bold')
+        ax[0].set_xlabel('date', fontsize=20)
+        ax[0].set_ylabel('the standard rate of trading (KRW)', fontsize=20)
+        # ax[0].set_title(f"{selected_country} Exchange rate fluctuations (last 1 month)", fontsize=25, fontweight='bold')
+        ax[0].set_title(f"Exchange rate fluctuations (last 1 month)", fontsize=25, fontweight='bold')
         ax[0].legend(fontsize=20)
         ax[0].grid(alpha=0.5, linestyle='--')
 
         # 최댓값, 최솟값, 평균값 표시
-        ax[0].scatter(pd.to_datetime(max_date), max_value, color='red', label=f'최댓값: {max_value} (날짜: {max_date})', zorder=5, s=100)
-        ax[0].scatter(pd.to_datetime(min_date), min_value, color='blue', label=f'최솟값: {min_value} (날짜: {min_date})', zorder=5, s=100)
-        ax[0].axhline(y=avg_value, color='green', linestyle='--', label=f'평균값: {avg_value:.2f}')  # 평균값 라인 추가
+        ax[0].scatter(pd.to_datetime(max_date), max_value, color='red', label=f'Max value: {max_value} (date: {max_date})', zorder=5, s=100)
+        ax[0].scatter(pd.to_datetime(min_date), min_value, color='blue', label=f'Min value: {min_value} (date: {min_date})', zorder=5, s=100)
+        ax[0].axhline(y=avg_value, color='green', linestyle='--', label=f'Avg value: {avg_value:.2f}')  # 평균값 라인 추가
 
         # 최댓값, 최솟값을 강조하는 텍스트 추가
         ax[0].annotate(f'{max_value}', 
@@ -203,9 +204,9 @@ if not data.empty:
         colors = ["red" if x > 0 else "blue" for x in analyzed_data["변동률 (%)"]]
         ax[1].bar(pd.to_datetime(analyzed_data["날짜"]), analyzed_data["변동률 (%)"], color=colors, edgecolor="black")
         ax[1].axhline(y=0, color='gray', linestyle='--', linewidth=1)  # 기준선(0%)
-        ax[1].set_xlabel("날짜", fontsize=20)
-        ax[1].set_ylabel("변동률 (%)", fontsize=20)
-        ax[1].set_title(f"{selected_country} 환율 변동률 (상승/하락 구분)", fontsize=25, fontweight="bold")
+        ax[1].set_xlabel("date", fontsize=20)
+        ax[1].set_ylabel("rate of change (%)", fontsize=20)
+        ax[1].set_title(f"Exchange Rate Change (Up/Down)", fontsize=25, fontweight="bold")
         ax[1].grid(alpha=0.5, linestyle="--")
         ax[1].tick_params(axis="x", rotation=45)
 

@@ -18,8 +18,9 @@ hide_pages(["Thank you"])
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # load .env
-load_dotenv()
 
+load_dotenv()
+AUTH_KEY = st.secrets["API_KEY"]
 AUTH_KEY = os.environ.get('API_KEY')
 
 def get_exchange_rates(search_date):

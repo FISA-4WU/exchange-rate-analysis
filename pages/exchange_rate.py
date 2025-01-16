@@ -11,7 +11,8 @@ import os
 # load .env
 load_dotenv()
 
-API_KEY = os.environ.get('API_KEY')
+API_KEY = st.secrets["API_KEY"]
+#API_KEY = os.environ.get('API_KEY')
 
 # 한글 폰트 설정
 rc('font', family='Malgun Gothic')  # 윈도우의 맑은 고딕 폰트를 사용

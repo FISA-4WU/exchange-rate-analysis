@@ -1,5 +1,5 @@
 [theme]
-primaryColor = "#FE9A2E"  # 메인 색상 (orange)
-backgroundColor = "#0B0B3B"  # 배경 색상 (navy)
-secondaryBackgroundColor = "#0A122A"  # 보조 배경 색상 (사이드바)
-textColor = "#FBFBEF"  # 텍스트 색상
+primaryColor = "#5681d0"  # 메인 색상 (orange)
+backgroundColor = "#212750"  # 배경 색상 (navy)
+secondaryBackgroundColor = "#1a1a3d"  # 보조 배경 색상 (사이드바)
+textColor = "#f8f8f2"  # 텍스트 색상

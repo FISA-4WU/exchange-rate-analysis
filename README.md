@@ -1,3 +1,6 @@
+Check out the live app here: [Exchange Rate Analysis](https://exchange-rate-analysis-gtm4hf5d8kxnbnp2ynb56y.streamlit.app/)
+
+
 ### 💡 아이디어 배경
 해외여행을 준비하는 사람들에게 **환전 시점**은 비용 절감의 중요한 요소입니다. 환율 변동성을 고려하지 않고 환전할 경우, **불필요한 비용**이 발생할 수 있다는 점에서 착안했습니다. 여행 전에 **환전하기 가장 좋은 시점**을 안내하고, 이를 통해 사용자에게 **실질적인 금전적 이득**을 제공하는 서비스를 제공하고자 했습니다.
 

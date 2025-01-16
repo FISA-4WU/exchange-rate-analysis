@@ -11,10 +11,12 @@ import os
 # load .env
 load_dotenv()
 
-API_KEY = os.environ.get('API_KEY')
+API_KEY = st.secrets["API_KEY"]
+#API_KEY = os.environ.get('API_KEY')
 
 # 한글 폰트 설정
-rc('font', family='Malgun Gothic')  # 윈도우의 맑은 고딕 폰트를 사용
+rc('font', family='Arial')  # 윈도우의 맑은 고딕 폰트를 사용
+plt.rcParams['axes.unicode_minus'] = False
 
 # 환율 정보를 국가명으로 변환하는 딕셔너리 불러오기
 def load_currency_to_country():
@@ -120,8 +122,8 @@ if data:
         converted_amount = amount * exchange_rate
 
         # 변환 결과 출력
-        st.metric(label="변환할 금액", value=f"{amount:.2f} KRW")
-        st.metric(label="변환된 금액", value=f"{converted_amount:.2f} {currency_code}")
+        st.metric(label="변환할 금액", value=f"{amount:.2f} {currency_code}")
+        st.metric(label="변환된 금액", value=f"{converted_amount:.2f} KRW")
 
 # 환율 변동성 분석
 st.subheader("환율 변동성 분석")

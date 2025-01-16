@@ -9,19 +9,19 @@ import streamlit as st
 from bs4 import BeautifulSoup
 import time
 
-# country.json 파일 읽기
-with open('country.json', 'r', encoding='utf-8') as f:
-    country_dict = json.load(f)
+# contry.json 파일 읽기
+with open('contry.json', 'r', encoding='utf-8') as f:
+    contry = json.load(f)
 
 # 모든 통화 코드 리스트
-currencies = list(country_dict.keys())
+currencies = list(contry_dict.keys())
 
 # 사용자 입력 받기 (통화 코드와 날짜)
 def get_user_input():
-    selected_country = st.selectbox("나라를 선택하세요:", list(country_dict.values()))
+    selected_contry = st.selectbox("나라를 선택하세요:", list(contry_dict.values()))
     selected_date = st.date_input("여행 날짜를 선택하세요:", datetime.date.today() + datetime.timedelta(days=10))  # 기본 10일 후
-    selected_country_code = [key for key, value in country_dict.items() if value == selected_country][0]
-    return selected_country_code, selected_date
+    selected_contry_code = [key for key, value in contry_dict.items() if value == selected_contry][0]
+    return selected_contry_code, selected_date
 
 # WooriBank API로 환율 데이터 크롤링 (최적화)
 def crawl_exchange_rate_data(start_date, end_date, currency_code):
@@ -128,7 +128,7 @@ def main():
     # 시간 측정 시작
     start_time = time.time()
     # 사용자 입력 받기
-    selected_country_code, selected_date = get_user_input()
+    selected_contry_code, selected_date = get_user_input()
 
     # 크롤링 시작 날짜와 끝 날짜 설정
     today_date = datetime.date.today()
@@ -136,7 +136,7 @@ def main():
     search_start_date = today_date - datetime.timedelta(days=365 * 10)  # 5년치 데이터
 
     # 전체 데이터 크롤링
-    df = crawl_exchange_rate_data(search_start_date, search_finish_date, selected_country_code)
+    df = crawl_exchange_rate_data(search_start_date, search_finish_date, selected_contry_code)
 
     if df.empty:
         st.write("해당 기간의 환율 데이터가 없습니다.")
@@ -152,7 +152,7 @@ def main():
     lowest_2 = forecast_df.nsmallest(5, '예측 환율')  # 오름차순으로 선택
 
     # 예측 결과 표시
-    st.write(f"{country_dict[selected_country_code]} ({selected_country_code})의 환율 예측:")
+    st.write(f"{contry_dict[selected_contry_code]} ({selected_contry_code})의 환율 예측:")
     st.write(lowest_2[['날짜', '예측 환율']])
 
     # 성능 평가

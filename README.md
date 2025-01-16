@@ -1,4 +1,4 @@
-Check out the live app here: [Exchange Rate Analysis](https://exchange-rate-analysis-gtm4hf5d8kxnbnp2ynb56y.streamlit.app/)
+Check out the live app here: [Exchange Rate Analysis][(https://4wmnunivs.streamlit.app/)]
 
 
 ### 💡 아이디어 배경

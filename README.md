@@ -1,4 +1,4 @@
-Check out the live app here: [Exchange Rate Analysis](https://exchange-rate-analysis-gtm4hf5d8kxnbnp2ynb56y.streamlit.app/)
+Check out the live app here: [Exchange Rate Analysis](https://4wmnunivs.streamlit.app/)
 
 
 ### 💡 아이디어 배경
@@ -31,6 +31,7 @@ Check out the live app here: [Exchange Rate Analysis](https://exchange-rate-anal
 
 ### 📊 사용 데이터
 - 한국수출입은행 환율정보 Open API ➡️ [Click!](https://www.koreaexim.go.kr/ir/HPHKIR020M01?apino=2&viewtype=C&searchselect=&searchword=)
+- 우리은행 환율정보 Open API ➡️ [Click!](https://spib.wooribank.com/pib/Dream?withyou=CMCOM0186)
 
 ---
 

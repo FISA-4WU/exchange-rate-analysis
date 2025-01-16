@@ -7,13 +7,15 @@ show_pages(
     [   
         #Section("Menu"),
         Page("app.py", "환율 분석 및 예측 서비스", "✈️"),
-        Page("pages/crawling.py", "환율 추이 예측", "🤖", in_section=True),
+        Page("pages/recommend.py", "환전 날짜 추천", "🤖", in_section=True),
         Page("pages/map.py", "세계 환율 변동", "🌏", in_section=True),
         Page("pages/exchange_rate.py", "환율 계산 및 시각화", "📈", in_section=True),
     ]
 )
 
 hide_pages(["Thank you"])
+
+st.balloons()
 
 st.markdown(""" 
             

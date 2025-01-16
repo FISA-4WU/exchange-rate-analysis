@@ -122,8 +122,8 @@ if data:
         converted_amount = amount * exchange_rate
 
         # 변환 결과 출력
-        st.metric(label="변환할 금액", value=f"{amount:.2f} KRW")
-        st.metric(label="변환된 금액", value=f"{converted_amount:.2f} {currency_code}")
+        st.metric(label="변환할 금액", value=f"{amount:.2f} {currency_code}")
+        st.metric(label="변환된 금액", value=f"{converted_amount:.2f} KRW")
 
 # 환율 변동성 분석
 st.subheader("환율 변동성 분석")

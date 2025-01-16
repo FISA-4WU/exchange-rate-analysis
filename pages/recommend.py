@@ -152,7 +152,7 @@ def main():
 
     st.markdown("\n\n\n\n\n\n\n\n\n\n")
     # 예측 결과 표시
-    st.write(f"{country_dict[selected_country_code]} ({selected_country_code})의 환율이 낮을 것 같은 날을 선정해봤어요  '_'")
+    st.write(f"{country_dict[selected_country_code]} ({selected_country_code})의 환율이 낮을 것 같은 날을 선정해봤어요  '_'\n 오류가 생기면 깃허브로 연락주세요. 빠른 시일 내에 고치겠습니다.")
     #st.write(lowest_2[['날짜', '예측 환율']])
 
     # Plotly로 표 생성

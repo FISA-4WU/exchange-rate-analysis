@@ -21,7 +21,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 load_dotenv()
 AUTH_KEY = st.secrets["API_KEY"]
-AUTH_KEY = os.environ.get('API_KEY')
+#AUTH_KEY = os.environ.get('API_KEY')
 
 def get_exchange_rates(search_date):
     """한국수출입은행 환율 API에서 데이터를 가져오는 함수"""

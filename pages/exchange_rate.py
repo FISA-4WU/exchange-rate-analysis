@@ -16,6 +16,7 @@ API_KEY = st.secrets["API_KEY"]
 
 # 한글 폰트 설정
 rc('font', family='Arial')  # 윈도우의 맑은 고딕 폰트를 사용
+plt.rcParams['axes.unicode_minus'] = False
 
 # 환율 정보를 국가명으로 변환하는 딕셔너리 불러오기
 def load_currency_to_country():

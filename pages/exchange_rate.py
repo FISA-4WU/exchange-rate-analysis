@@ -45,7 +45,7 @@ def fetch_exchange_rate_data(date):
 # 함수: 일주일치 데이터 가져오기 
 def fetch_monthly_data():
     today = datetime.now()
-    dates = [(today - timedelta(days=i)).strftime('%Y%m%d') for i in range(3)] # 30일 변환 필수(마지막!!!)  
+    dates = [(today - timedelta(days=i)).strftime('%Y%m%d') for i in range(30)] # 30일 변환 필수(마지막!!!)  
 
     all_data = []
     for date in dates:
